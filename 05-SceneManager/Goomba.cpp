@@ -1,4 +1,5 @@
 #include "Goomba.h"
+#include <Animations.h>
 
 CGoomba::CGoomba(float x, float y):CGameObject(x, y)
 {

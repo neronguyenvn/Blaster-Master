@@ -1,7 +1,7 @@
 #pragma once
 
+#include <unordered_map>
 #include "Animation.h"
-#include "Sprite.h"
 
 class CAnimations
 {

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <d3dx10core.h>
 #include "Texture.h"
 
 class CSprite

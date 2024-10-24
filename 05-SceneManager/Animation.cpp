@@ -1,4 +1,5 @@
 #include "Animation.h"
+#include <Sprites.h>
 #include "debug.h"
 
 void CAnimation::Add(int spriteId, DWORD time)
@@ -36,4 +37,3 @@ void CAnimation::Render(float x, float y)
 
 	frames[currentFrame]->GetSprite()->Draw(x, y);
 }
-

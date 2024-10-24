@@ -1,12 +1,12 @@
 #include <fstream>
-
 #include "Game.h"
+#include <Sprites.h>
 #include "debug.h"
 #include "Utils.h"
-
 #include "Texture.h"
 #include "Animations.h"
 #include "PlayScene.h"
+#include <d3d10.h>
 
 CGame * CGame::__instance = NULL;
 
@@ -176,7 +176,7 @@ void CGame::Draw(float x, float y, LPTEXTURE tex, RECT* rect, float alpha, int s
 
 	D3DX10_SPRITE sprite;
 
-	// Set the sprite’s shader resource view
+	// Set the spriteï¿½s shader resource view
 	sprite.pTexture = tex->getShaderResourceView();
 
 	if (rect == NULL)
@@ -226,7 +226,7 @@ void CGame::Draw(float x, float y, LPTEXTURE tex, RECT* rect, float alpha, int s
 	D3DXMATRIX matScaling;
 	D3DXMatrixScaling(&matScaling, (FLOAT)spriteWidth, (FLOAT)spriteHeight, 1.0f);
 
-	// Setting the sprite’s position and size
+	// Setting the spriteï¿½s position and size
 	sprite.matWorld = (matScaling * matTranslation);
 
 	spriteObject->DrawSpritesImmediate(&sprite, 1, 0, 0);
@@ -242,7 +242,7 @@ LPTEXTURE CGame::LoadTexture(LPCWSTR texturePath)
 
 	// Retrieve image information first 
 	D3DX10_IMAGE_INFO imageInfo;
-	HRESULT hr = D3DX10GetImageInfoFromFile(texturePath, NULL, &imageInfo, NULL);
+	HRESULT hr = D3DX10GetImageInfoFromFileW(texturePath, NULL, &imageInfo, NULL);
 	if (FAILED(hr))
 	{
 		DebugOut((wchar_t*)L"[ERROR] D3DX10GetImageInfoFromFile failed for  file: %s with error: %d\n", texturePath, hr);
@@ -266,7 +266,7 @@ LPTEXTURE CGame::LoadTexture(LPCWSTR texturePath)
 	info.pSrcInfo = &imageInfo;
 
 	// Loads the texture into a temporary ID3D10Resource object
-	hr = D3DX10CreateTextureFromFile(pD3DDevice,
+	hr = D3DX10CreateTextureFromFileW(pD3DDevice,
 		texturePath,
 		&info,
 		NULL,

@@ -25,23 +25,12 @@ HOW TO INSTALL Microsoft.DXSDK.D3DX
 #include <d3d10.h>
 #include <d3dx10.h>
 #include <list>
-
 #include "debug.h"
 #include "Game.h"
 #include "GameObject.h"
 #include "Textures.h"
 #include "Animation.h"
-#include "Animations.h"
-
-#include "Mario.h"
-#include "Brick.h"
-#include "Goomba.h"
-#include "Coin.h"
-#include "Platform.h"
-
 #include "SampleKeyEventHandler.h"
-
-#include "AssetIDs.h"
 
 #define WINDOW_CLASS_NAME L"SampleWindow"
 #define MAIN_WINDOW_TITLE L"04 - Collision"
@@ -101,7 +90,7 @@ void Render()
 
 HWND CreateGameWindow(HINSTANCE hInstance, int nCmdShow, int ScreenWidth, int ScreenHeight)
 {
-	WNDCLASSEX wc;
+	WNDCLASSEXW wc;
 	wc.cbSize = sizeof(WNDCLASSEX);
 
 	wc.style = CS_HREDRAW | CS_VREDRAW;
@@ -110,17 +99,17 @@ HWND CreateGameWindow(HINSTANCE hInstance, int nCmdShow, int ScreenWidth, int Sc
 	wc.lpfnWndProc = (WNDPROC)WinProc;
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;
-	wc.hIcon = (HICON)LoadImage(hInstance, WINDOW_ICON_PATH, IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
+	wc.hIcon = (HICON)LoadImageW(hInstance, WINDOW_ICON_PATH, IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
 	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wc.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 	wc.lpszMenuName = NULL;
 	wc.lpszClassName = WINDOW_CLASS_NAME;
 	wc.hIconSm = NULL;
 
-	RegisterClassEx(&wc);
+	RegisterClassExW(&wc);
 
 	HWND hWnd =
-		CreateWindow(
+		CreateWindowW(
 			WINDOW_CLASS_NAME,
 			MAIN_WINDOW_TITLE,
 			WS_OVERLAPPEDWINDOW, // WS_EX_TOPMOST | WS_VISIBLE | WS_POPUP,
@@ -135,7 +124,7 @@ HWND CreateGameWindow(HINSTANCE hInstance, int nCmdShow, int ScreenWidth, int Sc
 
 	if (!hWnd) 
 	{
-		OutputDebugString(L"[ERROR] CreateWindow failed");
+		OutputDebugStringW(L"[ERROR] CreateWindow failed");
 		DWORD ErrCode = GetLastError();
 		return FALSE;
 	}

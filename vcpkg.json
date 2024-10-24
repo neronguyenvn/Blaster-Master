@@ -1,0 +1,11 @@
+{
+  "name": "blaster-master",
+  "version-string": "1.0.0",
+  "builtin-baseline": "41626fd77bf42f29e8f7e43dc1f2f05780588cde",
+  "dependencies": [
+    {
+      "name": "dxsdk-d3dx",
+      "version>=": "9.29.952.8#7"
+    }
+  ]
+}
